@@ -1,0 +1,110 @@
+<html>
+<head>
+<title>Employees</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<h1>Employees</h1>
+[ <a href="employees.html">Employees</a> | <a href="stores.html">Stores</a> | <a href="inventory.html">Inventory</a> | <a href="menuItem.html">Menu Items</a> ]
+
+<div id="browse" style="display: block">   <!--View all employees, maybe later make it browse by store -->
+<p><strong>Browse All Employees</strong></p>
+<table border="1" cellpadding="5">
+  <tr>
+    <th><a href="#">New</a></th>
+    <th></th>
+    <th>employee ID</th>
+    <th>Name</th>
+    <th>Age</th>
+    <th>Address</th>
+    <th>Phone Number</th>
+    <th>Store ID</th>
+  </tr>
+  <tr>
+    <td><a href="#">Edit</a></td>
+    <td><a href="#">Delete</a></td>
+    <td align="right" >1</td>
+    <td >John Smith</td>
+    <td align="right" >35</td>
+    <td>123 Main St</td>
+    <td>(555) 555-1212</td>
+  </tr>
+  <tr>
+    <td><a href="#">Edit</a></td>
+    <td><a href="#">Delete</a></td>
+    <td align="right" >2</td>
+    <td>Jane Doe</td>
+    <td align="right" >28</td>
+    <td>456 Elm St</td>
+    <td>(555) 555-1234</td>
+  </tr>
+  <tr>
+    <td><a href="#">Edit</a></td>
+    <td><a href="#">Delete</a></td>
+    <td>3</td>
+    <td>Bob Johnson</td>
+    <td align="right" >42</td>
+    <td>789 Oak St</td>
+    <td>(555) 555-5678</td>
+  </tr>
+</table>
+
+<p>&nbsp;</p>
+
+</div> 
+<div id="insert" style="display: block">    <!--add new employee-->
+    <form id="addEmployee">
+        <legend><strong>Add Employee</strong></legend>
+          <fieldset class="fields">
+            <label> Name </label> <input type="text" name="name">
+            <label for="store">Store Location</label>     <!--these are hardcoded values and will need to be dynamic later-->
+                <select name="store" id="store">
+                <option value="store1">Store 1</option>
+                <option value="store2">Store 2</option>
+                <option value="store3">Store 3</option>
+                </select>
+            <label> Age </label> <input type="text" name="age">
+            <label> Address </label> <input type="number" name="address">
+            <label> Phone Number </label> <input type="text" name="phone_number">
+          </fieldset>
+          <input class="btn" type="submit" id="addEmployee" value="Add an Employee">
+          <input class="btn" type="button" value="cancel">
+	</form> 
+</div>
+
+<p>&nbsp;</p>
+
+<div id="update" style="display: block">
+  <form id="updateEmployee">
+      <legend><strong>Update Employee</strong></legend>
+          <fieldset class="fields">
+            <label> ID </label> <input type="number"  name="employee_id" >
+            <label> Name </label> <input type="text"  name="name">
+            <label for="store">Store Location</label>
+                <select name="store" id="store">
+                <option value="store1">Store 1</option>
+                <option value="store2">Store 2</option>
+                <option value="store3">Store 3</option>
+                </select>
+            <label> Age </label> <input type="text"  name="age" >
+            <label> Address </label> <input type="text" name="address" >
+            <label> Phone Number </label> <input type="text" name="phone_number" >
+          </fieldset>
+          <input class="btn" type="submit" id="updateEmployee" value="Update Employee">
+          <input class="btn" type="button" value="cancel">
+  </form> 
+</div>
+
+<p>&nbsp;</p>
+
+<div id="delete" style="display: block">
+  <form id="deleteEmployee">
+    <legend><strong>Delete Employee</strong></legend>
+    <fieldset class="fields">
+      <label> ID </label> <input type="number"  name="employee_id" >
+      <label> Name </label> <input type="text"  name="name">
+    </fieldset>
+    <input class="btn" type="submit" id="deleteEmployee" value="Delete Employee">
+    <input class="btn" type="button" value="Cancel">
+  </form>
+</div>
