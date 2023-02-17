@@ -48,6 +48,102 @@
         </table>
     </div>
   
+    <div>
+      <div id="browse-menu-items">
+        <p><strong>order_menu_item (intersection table for M:M we'll make it more obv unique later)</strong></p>
+        <table border="1" cellpadding="5">
+          <tr>
+            <th>Order ID</th>
+            <th>Menu Item ID</th>
+            <th>Menu Item</th>
+            <th>Quantity</th>
+            <th>Action</th>
+          </tr>
+          <tr>
+            <td align="right">1</td>
+            <td align="right">1001</td>
+            <td>Milk Tea</td>
+            <td align="right">2</td>
+            <td>
+              <a href="#">Edit</a> |
+              <a href="#">Delete</a>
+            </td>
+          </tr>
+          <tr>
+            <td align="right">2</td>
+            <td align="right">1002</td>
+            <td>Matcha Latte</td>
+            <td align="right">3</td>
+            <td>
+              <a href="#">Edit</a> |
+              <a href="#">Delete</a>
+            </td>
+          </tr>
+          <tr>
+            <td align="right">3</td>
+            <td align="right">1003</td>
+            <td>Oolong Milk Tea</td>
+            <td align="right">4</td>
+            <td>
+              <a href="#">Edit</a> |
+              <a href="#">Delete</a>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="5">
+              <a href="#" id="add-menu-item-link">Add Menu Item</a>
+            </td>
+          </tr>
+        </table>
+      
+        <div id="add-menu-item-form" style="display: none">
+          <form id="add-menu-item">
+            <legend><strong>Add Menu Item</strong></legend>
+            <fieldset class="fields">
+              <label>Menu Item ID:</label> 
+              <input type="text" name="menu_item_id"><br>
+              <label>Menu Item:</label> 
+              <input type="text" name="menu_item"><br>
+              <label>Quantity:</label> 
+              <input type="text" name="quantity"><br>
+              <input type="hidden" name="order_id" value="1">
+            </fieldset>
+            <input class="btn" type="submit" id="add-menu-item-submit" value="Add Menu Item">
+            <input class="btn" type="button" value="Cancel">
+          </form>
+        </div>
+        
+        <div id="edit-menu-item-form" style="display: none">
+          <form id="edit-menu-item">
+            <legend><strong>Edit Menu Item</strong></legend>
+            <fieldset class="fields">
+              <input type="hidden" name="order_id" value="1">
+              <input type="hidden" name="menu_item_id">
+              <label>Menu Item:</label> 
+              <input type="text" name="menu_item"><br>
+              <label>Quantity:</label> 
+              <input type="text" name="quantity"><br>
+            </fieldset>
+            <input class="btn" type="submit" id="edit-menu-item-submit" value="Save">
+            <input class="btn" type="button" value="Cancel">
+          </form>
+      </div>
+    
+      <div id="delete-menu-item-form" style="display: none">
+        <form id="delete-menu-item">
+          <legend><strong>Delete Menu Item</strong></legend>
+          <fieldset class="fields">
+            <label>Menu Item ID:</label>
+            <input type="text" name="menu_item_id" required><br>
+            <label>Menu Item Name:</label>
+            <input type="text" name="menu_item_name" required><br>
+          </fieldset>
+          <input class="btn" type="submit" id="delete-menu-item-submi" value="Delete">
+          <input class="btn" type="button" value="Cancel">
+        </form>
+      </div>
+    </div>
+  
     <div id="insert">
         <form id="addOrder">
             <legend><strong>Add Order</strong></legend>
@@ -106,6 +202,5 @@
         <input class="btn" type="button" value="Cancel">
       </form>
     </div>
-    
     </body>
   </html>
