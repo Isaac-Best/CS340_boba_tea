@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Store</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <h1>Stores</h1>
+    [ <a href="employees.html">Employees</a> | <a href="stores.html">Stores</a> | <a href="inventory.html">Inventory</a> | <a href="menuItem.html">Menu Items</a> ]
+
+    <div id="browse" style="display: block">
+      <p><strong>Browse All Stores</strong></p>
+      <table border="1" cellpadding="5">
+        <tr>
+          <th><a href="#">New</a></th>
+          <th></th>
+          <th>Store ID</th>
+          <th>Location</th>
+          <th>Franchise</th>
+        </tr>
+        <tr>
+          <td><a href="#">Edit</a></td>
+          <td><a href="#">Delete</a></td>
+          <td align="right">1</td>
+          <td>Portland</td>
+          <td>John Doe</td>
+        </tr>
+        <tr>
+          <td><a href="#">Edit</a></td>
+          <td><a href="#">Delete</a></td>
+          <td align="right">2</td>
+          <td>Los Angeles</td>
+          <td>Jane Doe</td>
+        </tr>
+        <tr>
+          <td><a href="#">Edit</a></td>
+          <td><a href="#">Delete</a></td>
+          <td align="right">3</td>
+          <td>San Jose</td>
+          <td>Jim Smith</td>
+        </tr>
+      </table>
+    </div>
+
+    <div id="insert" style="display: block">
+      <form id="addStore">
+        <legend><strong>Add Store</strong></legend>
+        <fieldset class="fields">
+          <label>Location</label>
+          <input type="text" name="location">
+          <label>Franchise</label>
+          <input type="text" name="franchise">
+        </fieldset>
+        <input class="btn" type="submit" id="addStore" value="Add Store">
+        <input class="btn" type="button" value="Cancel">
+      </form>
+    </div>
+
+    <div id="update" style="display: block">
+      <form id="updateStore">
+        <legend><strong>Update Store</strong></legend>
+        <fieldset class="fields">
+          <label>Store ID</label>
+          <input type="number" name="store_id">
+          <label>Location</label>
+          <input type="text" name="location">
+          <label>Franchise</label>
+          <input type="text" name="franchise">
+        </fieldset>
+        <input class="btn" type="submit" id="updateStore" value="Update Store">
+        <input class="btn" type="button" value="Cancel">
+      </form>
+    </div>
+
+    <div id="delete" style="display: block">
+        <form id="deleteStore">
+          <legend><strong>Delete Store</strong></legend>
+          <fieldset class="fields">
+            <label>Store ID</label>
+            <input type="number" name="store_id">
+            <label>Location</label>
+            <input type="text" name="location">
+          </fieldset>
+          <input class="btn" type="submit" id="deleteStore" value="Delete Store">
+          <input class="btn" type="button" value="Cancel">
+        </form>
+      </div>
+    </body>
+</html>
