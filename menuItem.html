@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Menu Item</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <h1>Menu Item</h1>
+    [ <a href="employees.html">Employees</a> | <a href="stores.html">Stores</a> | <a href="inventory.html">Inventory</a> | <a href="menuItem.html">Menu Items</a> ]
+
+
+    <div id="browse" style="display: block">
+      <p><strong>Browse All Menu Items</strong></p>
+      <table border="1" cellpadding="5">
+        <tr>
+          <th><a href="#">New</a></th>
+          <th></th>
+          <th>Menu Item ID</th>
+          <th>Item Name</th>
+          <th>Inventory ID</th>
+        </tr>
+        <tr>
+          <td><a href="#">Edit</a></td>
+          <td><a href="#">Delete</a></td>
+          <td align="right">1001</td>
+          <td>Milk Tea</td>
+          <td align="right">1</td>
+        </tr>
+        <tr>
+          <td><a href="#">Edit</a></td>
+          <td><a href="#">Delete</a></td>
+          <td align="right">1002</td>
+          <td>Green Tea</td>
+          <td align="right">2</td>
+        </tr>
+        <tr>
+          <td><a href="#">Edit</a></td>
+          <td><a href="#">Delete</a></td>
+          <td align="right">1003</td>
+          <td>Winter Melon</td>
+          <td align="right">3</td>
+        </tr>
+      </table>
+    </div>
+
+    <div id="insert" style="display: block">
+      <form id="addMenuItem">
+        <legend><strong>Add Menu Item</strong></legend>
+        <fieldset class="fields">
+          <label>Item Name</label>
+          <input type="text" name="item_name">
+          <label>Inventory ID</label>
+          <input type="number" name="inventory_id">
+        </fieldset>
+        <input class="btn" type="submit" id="addMenuItem" value="Add Menu Item">
+        <input class="btn" type="button" value="Cancel">
+      </form>
+    </div>
+
+    <div id="update" style="display: block">
+      <form id="updateMenuItem">
+        <legend><strong>Update Menu Item</strong></legend>
+        <fieldset class="fields">
+          <label>Menu Item ID</label>
+          <input type="number" name="menu_item_id">
+          <label>Item Name</label>
+          <input type="text" name="item_name">
+          <label>Inventory ID</label>
+          <input type="number" name="inventory_id">
+        </fieldset>
+        <input class="btn" type="submit" id="updateMenuItem" value="Update Menu Item">
+        <input class="btn" type="button" value="Cancel">
+    </div>
+
+    <div id="delete" style="display: block">
+      <form id="deleteMenuItem">
+        <legend><strong>Delete Menu Item</strong></legend>
+        <fieldset class="fields">
+          <label>Menu Item ID</label>
+          <input type="number" name="menu_item_id">
+        </fieldset>
+        <input class="btn" type="submit" id="deleteMenuItem" value="Delete Menu Item">
+        <input class="btn" type="button" value="Cancel">
+      </form>
+    </div>
+  </body>
+</html>
