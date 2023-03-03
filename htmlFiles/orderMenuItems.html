@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Orders</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <h1>Orders</h1>
+    [ <a href="employees.html">Employees</a> | <a href="stores.html">Stores</a> | <a href="inventory.html">Inventory</a> | <a href="menuItem.html">Menu Items</a> | <a href="orders.html">Orders</a> | <a href="orderMenuItems.html">Order Menu Items</a> | <a href="customers.html">Customers</a> |  <a href="index.html"> Index</a> ]
+    <div id="browse-menu-items">
+      <p><strong>order_menu_item (intersection table for M:M we'll make it more obvious later)</strong></p>
+      <table border="1" cellpadding="5">
+        <tr>
+          <th>Order ID FK</th>
+          <th>Menu Item ID FK</th>
+          <th>Menu Item</th>
+          <th>Quantity</th>
+        </tr>
+        <tr>
+          <td rowspan="2" align="right">1</td>
+          <td align="right">1001</td>
+          <td>Milk Tea</td>
+          <td align="right">1</td>
+        </tr>
+        <tr>
+          <td align="right">1002</td>
+          <td>Matcha Latte</td>
+          <td align="right">1</td>
+        </tr>
+        <tr>
+          <td align="right">2</td>
+          <td align="right">1002</td>
+          <td>Matcha Latte</td>
+          <td align="right">3</td>
+        </tr>
+        <tr>
+          <td align="right">3</td>
+          <td align="right">1003</td>
+          <td>Oolong Milk Tea</td>
+          <td align="right">4</td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

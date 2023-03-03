@@ -6,13 +6,12 @@
   </head>
   <body>
     <h1>Inventory</h1>
-    [ <a href="employees.html">Employees</a> | <a href="stores.html">Stores</a> | <a href="inventory.html">Inventory</a> | <a href="menuItem.html">Menu Items</a> | <a href="index.html">Index</a> ]
-
+    [ <a href="employees.html">Employees</a> | <a href="stores.html">Stores</a> | <a href="inventory.html">Inventory</a> | <a href="menuItem.html">Menu Items</a> | <a href="orders.html">Orders</a> | <a href="orderMenuItems.html">Order Menu Items</a> | <a href="customers.html">Customers</a> |  <a href="index.html"> Index</a> ]
     <div id="browse" style="display: block">
       <p><strong>Browse All Inventory</strong></p>
       <table border="1" cellpadding="5">
         <tr>
-          <th><a href="#">New</a></th>
+          <th><a href="#">Add</a></th>
           <th></th>
           <th>Inventory ID</th>
           <th>Store ID</th>
@@ -52,10 +51,14 @@
 
     <div id="insert" style="display: block">
       <form id="addInventory">
-        <legend><strong>Add Inventory</strong></legend>
+        <legend><strong>Add to Inventory</strong></legend>
         <fieldset class="fields">
           <label>Store ID</label>
-          <input type="number" name="store_id">
+          <select name="store_id">
+            <option value="1">Store 1</option>
+            <option value="2">Store 2</option>
+            <option value="3">Store 3</option>
+          </select>
           <label>Milk Amount</label>
           <input type="number" name="milk_amount">
           <label>Tea Amount</label>
@@ -67,39 +70,3 @@
         <input class="btn" type="button" value="Cancel">
       </form>
     </div>
-
-    <div id="update" style="display: block">
-      <form id="updateInventory">
-        <legend><strong>Update Inventory</strong></legend>
-        <fieldset class="fields">
-          <label>Inventory ID</label>
-          <input type="number" name="inventory_id">
-          <label>Store ID</label>
-          <input type="number" name="store_id">
-          <label>Milk Amount</label>
-          <input type="number" name="milk_amount">
-          <label>Tea Amount</label>
-          <input type="number" name="tea_amount">
-          <label>Boba Amount</label>
-          <input type="number" name="boba_amount">
-        </fieldset>
-        <input class="btn" type="submit" id="updateInventory" value="Update Inventory">
-        <input class="btn" type="button" value="Cancel">
-      </form>
-    </div>
-    
-    <div id="delete" style="display: block">
-      <form id="deleteInventory">
-        <legend><strong>Delete Inventory</strong></legend>
-        <fieldset class="fields">
-          <label>Inventory ID</label>
-          <input type="number" name="inventory_id">
-          <label>Store ID</label>
-          <input type="number" name="store_id">
-        </fieldset>
-        <input class="btn" type="submit" id="deleteInventory" value="Delete Inventory">
-        <input class="btn" type="button" value="Cancel">
-      </form>
-    </div>
-  </body>
-</html>

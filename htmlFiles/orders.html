@@ -1,0 +1,148 @@
+<head>
+  <title>Orders</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+  <h1>Orders</h1>
+  [ <a href="employees.html">Employees</a> | <a href="stores.html">Stores</a> | <a href="inventory.html">Inventory</a> | <a href="menuItem.html">Menu Items</a> | <a href="orders.html">Orders</a> | <a href="orderMenuItems.html">Order Menu Items</a> | <a href="customers.html">Customers</a> |  <a href="index.html"> Index</a> ]
+  <div id="browse">
+      <p><strong>Browse All Orders</strong></p>
+        <table border="1" cellpadding="5">
+          <tr>
+              <th>Order ID</th>
+              <th>Customer Name</th>
+              <th>Order Date</th>
+              <th>Order Time</th>
+              <th>Menu Item</th>
+              <th>Quantity</th>
+              <th>Price</th>
+              <th>Total Amount</th>
+          </tr>
+          <tr>
+              <td align="right" rowspan="2">1</td>
+              <td rowspan="2">Jane Smith</td>
+              <td rowspan="2">2023-02-15</td>
+              <td rowspan="2">13:30:00</td>
+              <td>Milk Tea</td>
+              <td align="right">1</td>
+              <td align="right">$4.00</td>
+              <td rowspan="2" align="right">$8.00</td>
+          </tr>
+          <tr>
+              <td>Matcha Latte</td>
+              <td align="right">1</td>
+              <td align="right">$4.00</td>
+          </tr>
+
+          <tr>
+              <td align="right">2</td>
+              <td>John Doe</td>
+              <td>2023-02-15</td>
+              <td>14:15:00</td>
+              <td>Matcha Latte</td>
+              <td align="right">3</td>
+              <td align="right">$12.75</td>
+              <td align="right">$16.00</td>
+          </tr>
+          <tr>
+              <td align="right">3</td>
+              <td>Amy Johnson</td>
+              <td>2023-02-16</td>
+              <td>11:45:00</td>
+              <td>Oolong Milk Tea</td>
+              <td align="right">4</td>
+              <td align="right">$16.00</td>
+              <td align="right">$16.00</td>
+          </tr>
+      </table>
+  </div>
+
+  <div id="insert">
+    <form id="addOrder">
+      <legend><strong>Add Order</strong></legend>
+      <fieldset class="fields">
+        <label>Customer Name:</label>
+        <input type="text" name="customer_id"><br>
+        <label>Order Date:</label>
+        <input type="date" name="order_date"><br>
+        <label>Order Time:</label>
+        <input type="time" name="order_time"><br>
+      </fieldset>
+      <table border="1" cellpadding="5">
+        <thead>
+          <tr>
+            <th>Menu Item</th>
+            <th>Quantity</th>
+            <th>Total Amount</th>
+            <th>&nbsp;</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <select name="menu_item[]" required>
+                <option value="">Select Menu Item</option>
+                <option value="1001">Green Tea</option>
+                <option value="1002">Taro Milk Tea</option>
+                <option value="1003">Thai Milk Tea</option>
+                <option value="1004">Black Milk Tea</option>
+                <option value="1005">Jasmine Milk Tea</option>
+              </select>
+            </td>
+            <td><input type="number" name="quantity[]" min="1" max="10" required></td>
+            <td><input type="number" name="total_amount[]" required></td>
+            <td><button type="button" class="add-row">+</button></td>
+          </tr>
+        </tbody>
+      </table>
+      <input class="btn" type="submit" id="addOrder" value="Add Order">
+      <input class="btn" type="button" value="Cancel">
+    </form>
+  </div>
+  <div id="update" style="display: block">
+    <form id="updateOrder">
+        <legend><strong>Update Order</strong></legend>
+            <fieldset class="fields">
+              <label>Order ID</label>
+              <select name="store_id">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>      
+              <label> Customer Name </label> <input type="number" name="customer_id" required>
+              <label> Order Date </label> <input type="date" name="order_date" required>
+              <label> Order Time </label> <input type="time" name="order_time" required>
+              <label> Total Amount </label> <input type="number" name="total_amount" required>
+              <label> Menu Item </label> 
+              <select name="menu_item" required>
+                <option value="">Select Menu Item</option>
+                <option value="1001">Green Tea</option>
+                <option value="1002">Taro Milk Tea</option>
+                <option value="1003">Thai Milk Tea</option>
+                <option value="1004">Black Milk Tea</option>
+                <option value="1005">Jasmine Milk Tea</option>
+              </select>
+              <label> Quantity </label> <input type="number" name="quantity" min="1" max="10" required>
+            </fieldset>
+            <input class="btn" type="submit" id="updateOrder" value="Update Order">
+            <input class="btn" type="button" value="cancel">
+    </form> 
+  </div>
+  
+  <div id="delete" style="display: block">
+    <form id="deleteOrder">
+      <legend><strong>Delete Order</strong></legend>
+      <fieldset class="fields">
+        <label>Order ID</label>
+        <select name="store_id">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>          
+      </fieldset>
+      <input class="btn" type="submit" id="deleteOrder" value="Delete Order">
+      <input class="btn" type="button" value="Cancel">
+    </form>
+  </div>
+  </body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Customer</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <h1>Customers</h1>
+    [ <a href="employees.html">Employees</a> | <a href="stores.html">Stores</a> | <a href="inventory.html">Inventory</a> | <a href="menuItem.html">Menu Items</a> | <a href="orders.html">Orders</a> | <a href="orderMenuItems.html">Order Menu Items</a> | <a href="customers.html">Customers</a> |  <a href="index.html"> Index</a> ]
+
+    <div id="browse" style="display: block">
+      <p><strong>Browse All Customers</strong></p>
+      <table border="1" cellpadding="5">
+        <tr>
+          <th><a href="#">Add</a></th>
+          <th></th>
+          <th>Customer ID</th>
+          <th>Order ID</th>
+          <th>Name</th>
+        </tr>
+        <tr>
+          <td><a href="#">Edit</a></td>
+          <td><a href="#">Delete</a></td>
+          <td align="right">1</td>
+          <td align="right">1</td>
+          <td>John Doe</td>
+        </tr>
+        <tr>
+          <td><a href="#">Edit</a></td>
+          <td><a href="#">Delete</a></td>
+          <td align="right">2</td>
+          <td align="right">2</td>
+          <td>Jane Doe</td>
+        </tr>
+        <tr>
+          <td><a href="#">Edit</a></td>
+          <td><a href="#">Delete</a></td>
+          <td align="right">3</td>
+          <td align="right">3</td>
+          <td>Jim Smith</td>
+        </tr>
+      </table>
+    </div>
+
+    <div id="insert" style="display: block">
+        <form id="addCustomer">
+            <legend><strong>Add Customer</strong></legend>
+            <fieldset class="fields">
+              <label>Order ID</label>
+              <select name="order_id">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+              <label>Name</label>
+              <input type="text" name="name">
+            </fieldset>
+            <input class="btn" type="submit" id="addCustomer" value="Add Customer">
+            <input class="btn" type="button" value="Cancel">
+          </form>
+      </div>
+
+      <div id="update" style="display: block">
+        <form id="updateCustomer">
+            <legend><strong>Update Customer</strong></legend>
+            <fieldset class="fields">
+              <label>Customer ID</label>
+              <select name="order_id">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+              <label>Name</label>
+              <input type="text" name="name">
+            </fieldset>
+            <input class="btn" type="submit" id="addCustomer" value="Add Customer">
+            <input class="btn" type="button" value="Cancel">
+          </form>
+      </div>
+
+      <div id="delete" style="display: block">
+        <form id="deleteCustomer">
+          <legend><strong>Delete Customer</strong></legend>
+          <fieldset class="fields">
+            <label>Customer ID</label>
+            <select name="customer_id">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+          </fieldset>
+          <input class="btn" type="submit" id="deleteCustomer" value="Delete Customer">
+          <input class="btn" type="button" value="Cancel">
+        </form>
+      </div>
+  </body>
+</html>

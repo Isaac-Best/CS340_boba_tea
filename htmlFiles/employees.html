@@ -5,13 +5,13 @@
 </head>
 <body>
 <h1>Employees</h1>
-[ <a href="employees.html">Employees</a> | <a href="stores.html">Stores</a> | <a href="inventory.html">Inventory</a> | <a href="menuItem.html">Menu Items</a> | <a href="index.html">Index</a> ]
+[ <a href="employees.html">Employees</a> | <a href="stores.html">Stores</a> | <a href="inventory.html">Inventory</a> | <a href="menuItem.html">Menu Items</a> | <a href="orders.html">Orders</a> | <a href="orderMenuItems.html">Order Menu Items</a> | <a href="customers.html">Customers</a> |  <a href="index.html"> Index</a> ]
 
 <div id="browse" style="display: block">   <!--View all employees, maybe later make it browse by store -->
 <p><strong>Browse All Employees</strong></p>
 <table border="1" cellpadding="5">
   <tr>
-    <th><a href="#">New</a></th>
+    <th><a href="#">Add</a></th>
     <th></th>
     <th>employee ID</th>
     <th>Name</th>
@@ -28,6 +28,7 @@
     <td align="right" >35</td>
     <td>123 Main St</td>
     <td>(555) 555-1212</td>
+    <td>1</td>
   </tr>
   <tr>
     <td><a href="#">Edit</a></td>
@@ -37,15 +38,17 @@
     <td align="right" >28</td>
     <td>456 Elm St</td>
     <td>(555) 555-1234</td>
+    <td>1</td>
   </tr>
   <tr>
     <td><a href="#">Edit</a></td>
     <td><a href="#">Delete</a></td>
-    <td>3</td>
+    <td align = "right">3</td>
     <td>Bob Johnson</td>
     <td align="right" >42</td>
     <td>789 Oak St</td>
     <td>(555) 555-5678</td>
+    <td>1</td>
   </tr>
 </table>
 
@@ -63,7 +66,7 @@
                 <option value="store2">Store 2</option>
                 <option value="store3">Store 3</option>
                 </select>
-            <label> Age </label> <input type="text" name="age">
+            <label> Birthdate </label> <input type="date" name="birthdate">
             <label> Address </label> <input type="number" name="address">
             <label> Phone Number </label> <input type="text" name="phone_number">
           </fieldset>
@@ -78,7 +81,12 @@
   <form id="updateEmployee">
       <legend><strong>Update Employee</strong></legend>
           <fieldset class="fields">
-            <label> ID </label> <input type="number"  name="employee_id" >
+            <label>Employee ID</label>
+            <select name="employee_id">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
             <label> Name </label> <input type="text"  name="name">
             <label for="store">Store Location</label>
                 <select name="store" id="store">
@@ -86,7 +94,7 @@
                 <option value="store2">Store 2</option>
                 <option value="store3">Store 3</option>
                 </select>
-            <label> Age </label> <input type="text"  name="age" >
+            <label> Birthdate </label> <input type="date" name="birthdate">
             <label> Address </label> <input type="text" name="address" >
             <label> Phone Number </label> <input type="text" name="phone_number" >
           </fieldset>
@@ -101,8 +109,12 @@
   <form id="deleteEmployee">
     <legend><strong>Delete Employee</strong></legend>
     <fieldset class="fields">
-      <label> ID </label> <input type="number"  name="employee_id" >
-      <label> Name </label> <input type="text"  name="name">
+      <label>Employee ID</label>
+      <select name="employee_id">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </select>
     </fieldset>
     <input class="btn" type="submit" id="deleteEmployee" value="Delete Employee">
     <input class="btn" type="button" value="Cancel">

@@ -1,0 +1,31 @@
+{
+  "name": "boba_tea",
+  "version": "1.0.0",
+  "description": "boba_tea DB",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Isaac-Best/CS340_boba_tea.git"
+  },
+  "keywords": [
+    "mysql",
+    "node.js"
+  ],
+  "author": "bestis@oregonstate.edu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Isaac-Best/CS340_boba_tea/issues"
+  },
+  "homepage": "https://github.com/Isaac-Best/CS340_boba_tea#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-handlebars": "^7.0.1",
+    "forever": "^4.0.3",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.21"
+  }
+}

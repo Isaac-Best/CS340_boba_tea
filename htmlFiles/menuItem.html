@@ -6,14 +6,12 @@
   </head>
   <body>
     <h1>Menu Item</h1>
-    [ <a href="employees.html">Employees</a> | <a href="stores.html">Stores</a> | <a href="inventory.html">Inventory</a> | <a href="menuItem.html">Menu Items</a> | <a href="index.html">Index</a> ]
-
-
+    [ <a href="employees.html">Employees</a> | <a href="stores.html">Stores</a> | <a href="inventory.html">Inventory</a> | <a href="menuItem.html">Menu Items</a> | <a href="orders.html">Orders</a> | <a href="orderMenuItems.html">Order Menu Items</a> | <a href="customers.html">Customers</a> |  <a href="index.html"> Index</a> ]
     <div id="browse" style="display: block">
       <p><strong>Browse All Menu Items</strong></p>
       <table border="1" cellpadding="5">
         <tr>
-          <th><a href="#">New</a></th>
+          <th><a href="#">Add</a></th>
           <th></th>
           <th>Menu Item ID</th>
           <th>Item Name</th>
@@ -50,7 +48,11 @@
           <label>Item Name</label>
           <input type="text" name="item_name">
           <label>Inventory ID</label>
-          <input type="number" name="inventory_id">
+          <select name="inventory_id">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </select>
         </fieldset>
         <input class="btn" type="submit" id="addMenuItem" value="Add Menu Item">
         <input class="btn" type="button" value="Cancel">
@@ -62,26 +64,38 @@
         <legend><strong>Update Menu Item</strong></legend>
         <fieldset class="fields">
           <label>Menu Item ID</label>
-          <input type="number" name="menu_item_id">
+          <select name="menu_item_id">
+            <option value="1001">1001</option>
+            <option value="1002">1002</option>
+            <option value="1003">1003</option>
+          </select>
           <label>Item Name</label>
           <input type="text" name="item_name">
           <label>Inventory ID</label>
-          <input type="number" name="inventory_id">
+          <select name="inventory_id">
+            <option value="1">1</option>
+            <option value="2">2</option>
+          </select>
         </fieldset>
         <input class="btn" type="submit" id="updateMenuItem" value="Update Menu Item">
         <input class="btn" type="button" value="Cancel">
+      </form>
     </div>
 
     <div id="delete" style="display: block">
       <form id="deleteMenuItem">
         <legend><strong>Delete Menu Item</strong></legend>
         <fieldset class="fields">
-          <label>Menu Item ID</label>
-          <input type="number" name="menu_item_id">
+          <label>Select Item to Delete</label>
+          <select name="menu_item_id">
+            <option value="1">Item 1</option>
+            <option value="2">Item 2</option>
+            <option value="3">Item 3</option>
+          </select>
         </fieldset>
         <input class="btn" type="submit" id="deleteMenuItem" value="Delete Menu Item">
         <input class="btn" type="button" value="Cancel">
       </form>
     </div>
-  </body>
-</html>
+    
+            
