@@ -21,7 +21,7 @@ CREATE OR REPLACE TABLE inventory (
 
 -- Tracks employee information.
 CREATE OR REPLACE TABLE employees (
-  employee_id INT AUTO_INCREMENT PRIMARY KEY,
+  employee_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
   birthdate DATE NOT NULL,
   address VARCHAR(255) NOT NULL,

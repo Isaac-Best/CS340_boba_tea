@@ -25,29 +25,37 @@ app.set('view engine', '.hbs');                 // Tell express to use the handl
 
 
 
+
+
 /*
     ROUTES
 */
-app.get('/', function(req, res)
- 
 
 
-    {  
-        let query1 = 'SELECT employees.*, store.location AS store_location FROM employees INNER JOIN store ON employees.store_id = store.store_id;'; // display the relevant store location as well in the table 
-
-        db.pool.query(query1, function(error, rows, fields){    // Execute the query
-
-                let stores = rows.map(row => ({id: row.store_id, location: row.store_location}));   // this is for the store select drop down                           
-                res.render('index', {data: rows, stores: stores});  
-                 
-
-        })           
-        
- 
-    });                                                         
+// render the index page 
+app.get('/', function(req, res) {
+    res.render('index.hbs');
+  });
 
 
 
+// render the employee page 
+app.get('/employee', function(req, res) {
+    let query1 = 'SELECT employees.*, store.location AS store_location FROM employees INNER JOIN store ON employees.store_id = store.store_id;'; // display the relevant store location as well in the table
+    let query2 = 'SELECT store_id, location FROM store;'; 
+  
+    db.pool.query(query2, function(error, rows, fields) {                           // query to get store table info 
+      let stores = rows.map(row => ({id: row.store_id, location: row.location}));   
+  
+      db.pool.query(query1, function(error, rows, fields) {                         // nested so it can access stores array 
+        res.render('employee', {data: rows, stores: stores});  
+      });
+    });
+  }); 
+                                                           
+
+
+// add to employee table
 app.post('/add-employee-form', function(req, res){
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
@@ -77,7 +85,7 @@ app.post('/add-employee-form', function(req, res){
                     res.sendStatus(400);
                 }
                 else {
-                    res.send(rows);
+                    res.send(rows)
                     
                 }
             })
@@ -87,7 +95,7 @@ app.post('/add-employee-form', function(req, res){
 
 
 
-
+// delete from employee table 
 app.delete('/delete-employee', function(req,res,next){
     let data = req.body;
     let personID = parseInt(data.employee_id);
@@ -110,8 +118,43 @@ app.delete('/delete-employee', function(req,res,next){
   })});
 
 
+// update employee table
+  app.put('/update-employee-form', function(req, res){
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+    
+    // Create the query and run it on the database
+    query1 = `UPDATE employees SET name = '${data['name']}', birthdate = '${data['birthdate']}', address = '${data['address']}', phone_number = '${data['phoneNumber']}', store_id = '${data['storeID']}' WHERE employee_id = '${data['employee_id']}'`;
+    db.pool.query(query1, function(error, rows, fields){
 
+        // Check to see if there was an error
+        if (error) {
 
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error);
+            res.sendStatus(400);
+
+        }
+
+        // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM employees and
+        // presents it on the screen
+        else
+        {
+            query2 = 'SELECT employees.*, store.location AS store_location FROM employees INNER JOIN store ON employees.store_id = store.store_id;';
+            db.pool.query(query2, function(error, rows, fields) {
+
+                if (error) {
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+                else {
+                    res.send(rows);
+                    
+                }
+            })
+        }
+    })
+})
 
 
 

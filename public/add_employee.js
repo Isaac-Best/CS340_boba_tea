@@ -33,7 +33,6 @@ addEmployeeForm.addEventListener("submit", function (e) {
         phoneNumber: phoneNumberValue,
         storeID: storeIDValue
     }
-    
 
 
     // Setup our AJAX request
@@ -68,8 +67,6 @@ addEmployeeForm.addEventListener("submit", function (e) {
 // Creates a single row from an Object representing a single record from 
 // employees
 addRowToTable = (data) => {
-
-
     // Get a reference to the current table on the page and clear it out.
     let currentTable = document.getElementById("employees");
 
@@ -80,8 +77,7 @@ addRowToTable = (data) => {
     let parsedData = JSON.parse(data);
     let newRow = parsedData[parsedData.length - 1]
 
-  
-    // Create a row and 7 cells
+    // Create a row and 8 cells
     let row = document.createElement("TR");
     let employeeIDCell = document.createElement("TD");
     let nameCell = document.createElement("TD");
@@ -90,7 +86,7 @@ addRowToTable = (data) => {
     let phoneNumberCell = document.createElement("TD");
     let storeIDCell = document.createElement("TD");
     let storeLocationCell = document.createElement("TD"); 
-
+    let deleteCell = document.createElement("TD"); 
 
     // Fill the cells with correct data
     employeeIDCell.innerText = newRow.employee_id;
@@ -100,7 +96,7 @@ addRowToTable = (data) => {
     phoneNumberCell.innerText = newRow.phone_number;
     storeIDCell.innerText = newRow.store_id;
     storeLocationCell.innerText = newRow.store_location; 
-
+    deleteCell.innerHTML = '<button onclick="deleteEmployee(' + newRow.employee_id + ')">Delete</button>';
 
     // Add the cells to the row 
     row.appendChild(employeeIDCell);
@@ -110,6 +106,7 @@ addRowToTable = (data) => {
     row.appendChild(phoneNumberCell);
     row.appendChild(storeIDCell);
     row.appendChild(storeLocationCell);
+    row.appendChild(deleteCell);
     
     // Add the row to the table
     currentTable.appendChild(row);
