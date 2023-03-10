@@ -89,6 +89,7 @@ addRowToTable = (data) => {
     let deleteCell = document.createElement("TD"); 
 
     // Fill the cells with correct data
+    row.setAttribute("data-value", newRow.employee_id);
     employeeIDCell.innerText = newRow.employee_id;
     nameCell.innerText = newRow.name;
     birthdateCell.innerText = newRow.birthdate;

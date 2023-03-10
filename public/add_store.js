@@ -67,6 +67,7 @@ addRowToTable = (data) => {
     let deleteCell = document.createElement("TD"); 
 
     // Fill the cells with correct data
+    row.setAttribute("data-value", newRow.store_id);
     storeIDCell.innerText = newRow.store_id;
     locationCell.innerText = newRow.location;
     franchiseeCell.innerText = newRow.franchisee;

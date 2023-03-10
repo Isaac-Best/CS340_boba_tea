@@ -35,11 +35,6 @@ function deleteRow(store_id){
     for (let i = 0, row; row = table.rows[i]; i++) {
        //iterate through rows
        //rows would be accessed using the "row" variable assigned in the for loop
-
-
-        // console.log(table.rows[i].getAttribute("data-value"));
-        // console.log(store_id, 'this is the store id')
-
        if (table.rows[i].getAttribute("data-value") == store_id) {
             table.deleteRow(i);
             break;
