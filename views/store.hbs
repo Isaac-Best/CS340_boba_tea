@@ -1,0 +1,58 @@
+
+
+
+
+<h1>Stores</h1>
+<p>Nav Bar below</p>
+[ <a href="/">Index</a> | <a href="/employee"> Employees</a> ]
+
+
+{{!-- Create a table --}}
+<table id="stores">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders POSSIBLY HARDCODE SO ITS VISUALLY APPEALING AND NOT VAIRBALES--}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the store_id, location, and franchisee --}}
+        {{#each data}}
+        <tr data-value={{this.store_id}}>
+            <td>{{this.store_id}}</td>
+            <td>{{this.location}}</td>
+            <td>{{this.franchisee}}</td>
+            <td><button onclick="deleteStore({{this.store_id}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./delete_store.js"></script>    
+    
+    
+{{!-- Form to add a record to the table using AJAX --}}
+<h2>Adding Data with AJAX</h2>
+<p>To add a new store, please enter its information below and click 'Submit'!</p>
+<form id="add-store-form">
+    <label for="input-location">Location: </label>
+    <input type="text" name="input-location" id="input-location">
+
+    <label for="input-franchisee">Franchisee: </label>
+    <input type="text" name="input-franchisee" id="input-franchisee">
+
+    <input type="submit">
+</form>
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./add_store.js"></script>

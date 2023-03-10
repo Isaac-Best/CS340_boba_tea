@@ -71,15 +71,9 @@ updateEmployeeForm.addEventListener("submit", function (e) {
 function updateRow(data, emp_id){
     let parsedData = JSON.parse(data);
     let table = document.getElementById("employees");
-
-    console.log(parsedData)
     
     for (let i = 0, row; row = table.rows[i]; i++) {
         if (table.rows[i].getAttribute("data-value") == emp_id) {
-
-
-            console.log(parsedData[i-1], 'printing the index')
-            console.log(i)
 
             let updateRowIndex = table.getElementsByTagName("tr")[i];
 

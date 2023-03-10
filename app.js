@@ -44,10 +44,10 @@ app.get('/employee', function(req, res) {
     let query1 = 'SELECT employees.*, store.location AS store_location FROM employees INNER JOIN store ON employees.store_id = store.store_id;'; // display the relevant store location as well in the table
     let query2 = 'SELECT store_id, location FROM store;'; 
   
-    db.pool.query(query2, function(error, rows, fields) {                           // query to get store table info 
+    db.pool.query(query2, function(error, rows, fields) {                           // query to get store table info this is for the drop down
       let stores = rows.map(row => ({id: row.store_id, location: row.location}));   
   
-      db.pool.query(query1, function(error, rows, fields) {                         // nested so it can access stores array 
+      db.pool.query(query1, function(error, rows, fields) {                         // nested so it can access stores array this is for the table 
         res.render('employee', {data: rows, stores: stores});  
       });
     });
@@ -157,7 +157,71 @@ app.delete('/delete-employee', function(req,res,next){
 })
 
 
+//////////////////////////////////////////// stores page
+app.get('/store', function(req, res) {
+    let query = 'SELECT * FROM store;';
+  
+    db.pool.query(query, function(error, rows, fields) {
+        if (error) throw error;
 
+        res.render('store', {data: rows});  
+    });
+});
+
+
+app.post('/add-store-form', function(req, res){
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+
+    // Create the query and run it on the database
+    query = `INSERT INTO store (location, franchisee) VALUES ('${data['location']}', '${data['franchisee']}')`;
+    db.pool.query(query, function(error, rows, fields){
+
+        // Check to see if there was an error
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+
+        // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM store and presents it on the screen
+        else
+        {
+            query = 'SELECT * FROM store;';
+            db.pool.query(query, function(error, rows, fields) {
+
+                if (error) {
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+                else {
+                    res.send(rows);
+                }
+            })
+        }
+    })
+})
+
+app.delete('/delete-store', function(req, res, next) {
+    let data = req.body;
+    let storeID = parseInt(data.store_id);
+    
+    let deleteStore = "DELETE FROM store WHERE store_id = ?;";
+  
+    // Run the delete query on the database
+    db.pool.query(deleteStore, [storeID], function(error, rows, fields) {
+      if (error) {
+        // Log the error to the terminal and send the client an HTTP response indicating the request was bad
+        console.log(error);
+        res.sendStatus(400);
+      } else {
+        // Send the client an HTTP response indicating success
+        res.sendStatus(204);
+      }
+    });
+  });
+  
 
 
 
