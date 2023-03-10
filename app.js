@@ -157,7 +157,7 @@ app.delete('/delete-employee', function(req,res,next){
 })
 
 
-//////////////////////////////////////////// stores page
+//////////////////////////////////////////////////////////////////////////////////////////////// stores page
 app.get('/store', function(req, res) {
     let query = 'SELECT * FROM store;';
   
@@ -222,6 +222,97 @@ app.delete('/delete-store', function(req, res, next) {
     });
   });
   
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////// inventory page 
+
+// render the inventory page
+app.get('/inventory', function(req, res) {
+    let query1 = 
+    `SELECT i.inventory_id, i.store_id, i.milk_amount, i.tea_amount, i.boba_amount, s.location AS store_location
+    FROM inventory i
+    INNER JOIN store s
+    ON i.store_id = s.store_id;
+    `;
+    let query2 = `SELECT store_id as id, location
+    FROM store
+    WHERE NOT EXISTS (
+      SELECT 1
+      FROM inventory
+      WHERE inventory.store_id = store.store_id
+    )`; 
+
+    db.pool.query(query2, function(error, rows, fields) {
+        let stores = rows.map(row => ({id: row.id, location: row.location}));   
+        
+        db.pool.query(query1, function(error, rows, fields) {                        
+            res.render('inventory', {data: rows, stores: stores});  
+        });
+    });
+});
+
+
+
+// add to inventory table
+app.post('/add-inventory-form', function(req, res){
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+
+    // Create the query and run it on the database
+    query1 = `INSERT INTO inventory (inventory_id, store_id, milk_amount, tea_amount, boba_amount) 
+    VALUES (${data['storeID']}, ${data['storeID']}, ${data['milkAmount']}, ${data['teaAmount']}, ${data['bobaAmount']})`;
+    
+    db.pool.query(query1, function(error, rows, fields){
+        if (error) {
+            console.log(error)
+            res.sendStatus(400);
+        }
+
+        else
+        {
+            query2 = `SELECT i.inventory_id, i.store_id, i.milk_amount, i.tea_amount, i.boba_amount, s.location AS store_location
+            FROM inventory i
+            INNER JOIN store s
+            ON i.store_id = s.store_id;
+            `;
+            db.pool.query(query2, function(error, rows, fields) {
+
+                if (error) {
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+                else {
+                    res.send(rows);
+                    
+                }
+            })
+        }
+    })
+})
+
+
+// delete from inventory table
+app.delete('/delete-inventory', function(req,res,next){
+    let data = req.body;
+    let inventoryID = parseInt(data.inventory_id);
+    let delete_inventory = "DELETE FROM inventory WHERE inventory_id = ?;";
+
+
+    // Run the query
+    db.pool.query(delete_inventory, [inventoryID], function(error, rows, fields){
+        if (error) {
+
+        // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+        console.log(error);
+        res.sendStatus(400);
+        }
+        else {
+            res.sendStatus(204);
+        }
+    });
+});
+
 
 
 
