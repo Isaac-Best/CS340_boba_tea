@@ -377,6 +377,22 @@ app.post('/add-menuItem-form', function(req, res) {
   });
   
 
+app.delete('/delete-menuItem', function(req, res) {
+    let data = req.body;
+    let menuItemID = parseInt(data.menu_item_id);
+    let deleteMenuItemQuery = "DELETE FROM menuItem WHERE menu_item_id = ?;";
+
+    db.pool.query(deleteMenuItemQuery, [menuItemID], function(error, rows, fields) {
+        if (error) {
+        console.log(error);
+        res.sendStatus(400);
+        } else {
+        res.sendStatus(204);
+        }
+    });
+});
+  
+
 
 
 /*
