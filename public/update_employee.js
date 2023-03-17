@@ -84,6 +84,7 @@ function updateRow(data, emp_id){
             updateRowIndex.getElementsByTagName("td")[3].innerHTML = parsedData[i-1].address;
             updateRowIndex.getElementsByTagName("td")[4].innerHTML = parsedData[i-1].phone_number;
             updateRowIndex.getElementsByTagName("td")[5].innerHTML = parsedData[i-1].store_id;
+            updateRowIndex.getElementsByTagName("td")[6].innerHTML = parsedData[i-1].store_location 
         }
     }
 }

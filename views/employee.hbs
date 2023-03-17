@@ -44,6 +44,18 @@
 <script src="./delete_employee.js"></script>    
 
 
+<h2>Search Box</h2>
+<p>Search for employees using name. Partial names are OK too!</p>
+<form id="search-employee-html" method='GET' action='/employee'>
+    <label for="input-name">Search by Name: </label>
+    <input type="text" name="name" id="input-name-html-search">
+    
+    <input type="submit">
+    <a href='/employee'><button>Reset</button></a>
+</form>
+
+
+
 
 {{!-- Form to add a record to the table using AJAX --}}
 <h2>Adding Data with AJAX</h2>
@@ -61,7 +73,7 @@
     <label for="input-PhoneNumber">Phone Number</label>
     <input type="text" name="input-PhoneNumber" id="input-PhoneNumber">
 
-    <label for="input-storeID">Store Location: </label>           {{!--this here still needs edits for the drop down--}}
+    <label for="input-storeID">Store Location: </label>           
     <select name="input-storeID" id="input-storeID">
         <option value="">Select a store</option>
         {{#each stores}}
@@ -81,8 +93,13 @@
 <p>To update an employee, please enter their employee ID and then submit their modified information</p>
 <form id="update-employee-form">
 
-   <label for="update-employeeID">employee ID: </label>
-    <input type="number" name="update-employeeID" id="update-employeeID">
+   <label for="update-employeeID">Employee ID: </label>
+    <select name="update-employeeID" id="update-employeeID">
+        <option value="">Select an employee</option>
+        {{#each data}}
+        <option value="{{this.employee_id}}">{{this.employee_id}}</option>
+        {{/each}}
+    </select>
 
     <label for="update-name">Name: </label>
     <input type="text" name="update-name" id="update-name">
@@ -97,7 +114,12 @@
     <input type="text" name="update-PhoneNumber" id="update-PhoneNumber">
 
     <label for="update-storeID">Store ID: </label>
-    <input type="text" name="update-storeID" id="update-storeID">
+    <select name="update-storeID" id="update-storeID">
+        <option value="">Select a store</option>
+        {{#each stores}}
+        <option value="{{this.id}}">{{this.location}}</option>
+        {{/each}}
+    </select>
 
     <input type="submit">
 </form>

@@ -41,8 +41,14 @@ app.get('/', function(req, res) {
 
 // render the employee page 
 app.get('/employee', function(req, res) {
-    let query1 = 'SELECT employees.*, store.location AS store_location FROM employees INNER JOIN store ON employees.store_id = store.store_id;'; // display the relevant store location as well in the table
-    let query2 = 'SELECT store_id, location FROM store;'; 
+    let query1;
+    let query2 = 'SELECT store_id, location FROM store;'; // query to get store table info this is for the drop down
+  
+    if (req.query.name === undefined) {
+        query1 = 'SELECT employees.*, store.location AS store_location FROM employees INNER JOIN store ON employees.store_id = store.store_id;'; // display the relevant store location as well in the table
+    } else {
+        query1 = `SELECT employees.*, store.location AS store_location FROM employees INNER JOIN store ON employees.store_id = store.store_id WHERE name LIKE "${req.query.name}%";`; // if there is something in the search box 
+    }
   
     db.pool.query(query2, function(error, rows, fields) {                           // query to get store table info this is for the drop down
       let stores = rows.map(row => ({id: row.store_id, location: row.location}));   
