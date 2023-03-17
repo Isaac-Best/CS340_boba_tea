@@ -1,0 +1,78 @@
+/* Set table border and spacing */
+table {
+  border-collapse: collapse;
+  border: 1px solid #ddd;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+/* Set cell padding */
+th,
+td {
+  padding: 0.75rem;
+}
+
+/* Set background color for odd rows */
+tr:nth-child(odd) {
+  background-color: #79c2d0;
+}
+
+/* Set background color for even rows */
+tr:nth-child(even) {
+  background-color: #bbe4e9;
+}
+
+/* Set hover effect */
+tr:hover {
+  background-color: #53a8b6;
+}
+
+/* Set color for table headers */
+th {
+  background-color: #5585b5;
+  color: white;
+}
+
+/* Set color for table footers */
+tfoot {
+  background-color: #5585b5;
+  color: white;
+}
+
+/* Set color for borders on hover */
+th:hover,
+td:hover {
+  border: 1px solid #777;
+}
+
+
+/* Set background color for body */
+body {
+  background-color: #e7eaf6;
+}
+
+/* Set background color for navigation */
+nav {
+  background-color: #5585b5;
+  color: white;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Set background color for links in navigation */
+nav a {
+  color: white;
+  text-decoration: none;
+}
+
+/* Set color for links in navigation on hover */
+nav a:hover {
+  color: #79c2d0;
+}
+
+/* Set background color for footer */
+footer {
+  background-color: #5585b5;
+  color: white;
+  padding: 1rem;
+}

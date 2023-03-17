@@ -332,6 +332,52 @@ app.get('/order_menu_item', function(req, res) {
 
 
 
+/////////////////////////////////////
+app.get('/menuItem', function(req, res) {
+    let query = `SELECT * FROM menuItem;`;
+    let query2 = `SELECT inventory_id FROM inventory;`; // for the select drop down 
+  
+    db.pool.query(query, function(error, rows, fields) {
+      if (error) throw error;
+
+    db.pool.query(query2, function(error, rows2, fields2) {
+        if (error) throw error;
+        let inventories = rows2.map(row => ({id: row.inventory_id}));
+  
+        res.render('menuItem', {data: rows, inventories: inventories});  
+        
+      });
+    });
+  });
+  
+
+app.post('/add-menuItem-form', function(req, res) {
+
+    let data = req.body;
+    query = `INSERT INTO menuItem (inventory_id, item_cost, item_name) VALUES ('${data['inventory_id']}', '${data['item_cost']}', '${data['item_name']}')`;
+  
+    db.pool.query(query, function(error, rows, fields) {
+
+      if (error) {
+        console.log(error);
+        res.sendStatus(400);
+      } else {
+        // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM menuItem and presents it on the screen
+        query2 = `SELECT * FROM menuItem;`;
+        db.pool.query(query2, function(error, rows, fields) {
+          if (error) {
+            console.log(error);
+            res.sendStatus(400);
+          } else {
+            res.send(rows);
+          }
+        });
+      }
+    });
+  });
+  
+
+
 
 /*
     LISTENER

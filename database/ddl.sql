@@ -30,7 +30,7 @@ CREATE OR REPLACE TABLE employees (
   FOREIGN KEY (store_id) REFERENCES store(store_id) ON DELETE CASCADE -- if the store is deleted all employees get deleted 
 );
 
--- tracks customer information used for returns and processing card charges | optinal relationship woth order
+ -- tracks customer information used for returns and processing card charges | optinal relationship woth order
 CREATE OR REPLACE TABLE customer (
   customer_id INT NOT NULL PRIMARY KEY,
   order_id INT,
@@ -40,7 +40,7 @@ CREATE OR REPLACE TABLE customer (
 
 -- Tracks menu items:
 CREATE OR REPLACE TABLE menuItem (                        
-  menu_item_id INT NOT NULL PRIMARY KEY,
+  menu_item_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   inventory_id INT NOT NULL,
   item_cost DECIMAL(10,2) NOT NULL,  
   item_name varchar(255) NOT NULL, 
@@ -105,11 +105,11 @@ VALUES
   (2, '2022-01-02', '11:00:00', 12.99, 1002),
   (3, '2022-01-03', '12:00:00', 19.99, 1003);
 
-INSERT INTO menuItem (menu_item_id, item_name, inventory_id, item_cost)
+INSERT INTO menuItem (item_name, inventory_id, item_cost)
 VALUES 
-  (1001, 'milk_tea', 1, 5.00),
-  (1002,'green_tea', 2, 5.50),
-  (1003, 'winter_melon', 3, 6.00);
+  ('milk_tea', 1, 5.00),
+  ('green_tea', 2, 5.50),
+  ('winter_melon', 3, 6.00);
 
 INSERT INTO order_menu_item (order_id, menu_item_id, quantity)
 VALUES 

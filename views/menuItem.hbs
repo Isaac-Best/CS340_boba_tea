@@ -1,0 +1,68 @@
+
+
+<link rel="stylesheet" href="/styles.css">
+
+
+
+<h1>Menu Items</h1>
+<p>Nav Bar below</p>
+[ <a href="/">Index</a> | <a href="/employee"> Employees</a> | <a href="/store">Stores</a> | <a href="/inventory">Inventory</a> | <a href="/order_menu_item">Order Menu Item</a>]
+
+{{!-- Create a table --}}
+<table id="menu-items">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders POSSIBLY HARDCODE SO ITS VISUALLY APPEALING AND NOT VAIRBALES--}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}<th> </th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the menu_item_id, inventory_id, item_name, and item_cost --}}
+        {{#each data}}
+        <tr data-value={{this.menu_item_id}}>
+            <td>{{this.menu_item_id}}</td>
+            <td>{{this.inventory_id}}</td>
+            <td>{{this.item_cost}}</td>
+            <td>{{this.item_name}}</td>
+            <td><button onclick="deleteMenuItem({{this.menu_item_id}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./delete_menuItem.js"></script>    
+    
+    
+{{!-- Form to add a record to the table using AJAX --}}
+<h2>Adding Data with AJAX</h2>
+<p>To add a new menu item, please enter its information below and click 'Submit'!</p>
+<form id="add-menuItem-form">
+    <label for="input-inventory-id">Inventory ID: </label>
+    <select name="input-inventory-id" id="input-inventory-id">
+      <option value="">Select an inventory ID</option>
+        {{#each inventories}}
+        <option value="{{this.id}}">{{this.id}}</option>
+        {{/each}}
+    </select>
+
+    <label for="input-item-name">Item Name: </label>
+    <input type="text" name="input-item-name" id="input-item-name">
+
+    <label for="input-item-cost">Item Cost: </label>
+    <input type="text" name="input-item-cost" id="input-item-cost">
+
+    <input type="submit">
+</form>
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./add_menuItem.js"></script>
