@@ -313,6 +313,17 @@ app.delete('/delete-inventory', function(req,res,next){
     });
 });
 
+//////////////////////////////////////
+app.get('/order_menu_item', function(req, res) {
+    let query = `SELECT * FROM order_menu_item;`;
+  
+    db.pool.query(query, function(error, rows, fields) {
+        if (error) throw error;
+
+        res.render('order_menu_item', {data: rows});  
+    });
+});
+
 
 
 

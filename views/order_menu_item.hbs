@@ -1,0 +1,31 @@
+<h1>order_menu_item</h1>
+<p>Nav Bar below</p>
+[ <a href="/">Index</a> | <a href="/employee">Employees</a> | <a href="/store">Stores</a> | <a href="/inventory">Inventory</a> | ]
+
+{{!-- Create a table --}}
+<table id="order_menu_item">
+
+    {{!-- Header section --}}
+    <thead>
+
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the store_id, location, and franchisee --}}
+        {{#each data}}
+        <tr data-value={{this.order_id}}>
+            <td>{{this.order_id}}</td>
+            <td>{{this.quantity}}</td>
+            <td>{{this.menu_item_id}}</td>
+        {{/each}}
+    </tbody>
+</table>

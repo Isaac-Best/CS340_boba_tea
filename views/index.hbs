@@ -3,14 +3,74 @@
   <head>
     <title>Boba Shop</title>
   </head>
+
   <body>
-    <h1>Special Tea</h1>
+
+    <h1>Special Tea Boba Shop</h1>
+
     <nav>
-      <ul>
-        <li><a href="/employee">Employees</a></li>
-        <li><a href="/store">Stores</a></li>
-        <li><a href="/inventory">Inventory</a></li>
-      </ul>
+      [ <a href="/">Index</a> | <a href="/employee"> Employees</a> | <a href="/store">Stores</a> | <a href="/inventory">Inventory</a> | <a href="/order_menu_item">order_menu_item</a>]
     </nav>
+
+    <h1>Home Page</h1>
+      <p>Special-Tea is a rapidly growing franchised boba shop chain that has made a significant impact in the beverage industry, serving over 50,000 satisfied customers every year. 
+        Currently, the company operates 5 strategically located branches in California and Oregon, but with plans to expand to 15 locations in the near future, the demand for its signature boba drinks is only set to increase.
+      </p>
+      <p>To better manage its operations, the company has implemented a sophisticated database-driven website. 
+        This innovative platform allows for seamless employee organization, real-time sales analysis, and valuable insights into the business's day-to-day operations. 
+        Management is empowered to make informed, data-driven decisions that drive growth, by quickly identifying the top-performing locations, assessing staffing levels, and determining the most popular menu items.
+      </p>
+      
+    <table>
+      <thead>
+        <tr>
+          <th>Table Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Store</td>
+          <td>Tracks store IDs, location, and franchisee.</td>
+        </tr>
+        <tr>
+          <td>Inventory</td>
+          <td>Tracks products in store using information from orders:</td>
+        </tr>
+        <tr>
+          <td>Employees</td>
+          <td>Tracks employee information.</td>
+        </tr>
+        <tr>
+          <td>Customer</td>
+          <td>Tracks customer information used for returns and processing card charges | optinal relationship woth order</td>
+        </tr>
+        <tr>
+          <td>MenuItem</td>
+          <td>Tracks menu items:</td>
+        </tr>
+        <tr>
+          <td>Order</td>
+          <td>Tracks information on customer orders. Used to keep track of inventory levels</td>
+        </tr>
+        <tr>
+          <td>Order_Menu_Item</td>
+          <td>Intersection table between menu items and orders M:N</td>
+        </tr>
+      </tbody>
+    </table>
+
+      <h3>
+        Entity relationship Diagram 
+        <img src="../assets/photo_1.png">
+
+      </h3>
+
+      <h3>
+        Schema
+        <img src="../assets/photo_2.png">
+      </h3>
+
+
   </body>
 </html>
