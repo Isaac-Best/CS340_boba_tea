@@ -41,18 +41,10 @@
 {{!-- Form to add a record to the table using AJAX --}}
 <h2>Adding Data with AJAX two options</h2>
     <p>
-    The drop down shows orders without a customer FK attached, you can either leave it blank to add cusstomer or select to add a customer and connect them to a current order  
+    Inserting a customer per requirement however they will not be connected to an order, an update from the order (parent table) needs to be done in order for that change 
     </p>
     
 <form id="add-customer-form">
-
-    <label for="input-order-id">Order ID: </label>
-    <select name="input-order-id" id="input-order-id">
-        <option value="">Select an order ID</option>
-        {{#each orderIds}}
-        <option value="{{this}}">{{this}}</option>
-        {{/each}}
-    </select>
 
     <label for="input-name">Name: </label>
     <input type="text" name="input-name" id="input-name">

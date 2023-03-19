@@ -73,7 +73,6 @@ CREATE OR REPLACE TABLE order_menu_item (
 
 
 
-
  -- insert data into the tables 
 INSERT INTO store (location, franchisee)
 VALUES 
@@ -113,9 +112,36 @@ VALUES
 
 INSERT INTO order_menu_item (order_id, menu_item_id, quantity)
 VALUES 
-  (1, 1001, 2),
-  (2, 1002, 3),
-  (3, 1003, 4);
+  (1, 1, 2),
+  (2, 2, 3),
+  (3, 3, 4);
+
+
+
+-- have to insert this manually in the GUI mySQL does not like (doesn't like its own export either)
+-- CREATE TRIGGER calculate_order_menu_item_quantity
+-- AFTER INSERT ON `order`
+-- FOR EACH ROW
+-- BEGIN
+--   INSERT INTO order_menu_item (order_id, menu_item_id, quantity)
+--   SELECT NEW.order_id, menuItem.menu_item_id, NEW.total_amount DIV menuItem.item_cost
+--   FROM menuItem
+--   WHERE menuItem.menu_item_id = NEW.menu_item_id;
+-- END
+
+
+-- CREATE TRIGGER decrement_inventory_trigger
+-- AFTER INSERT ON order_menu_item
+-- FOR EACH ROW
+-- BEGIN
+--     UPDATE inventory
+--     JOIN menuItem ON inventory.inventory_id = menuItem.inventory_id
+--     SET milk_amount = milk_amount - NEW.quantity,
+--         tea_amount = tea_amount - NEW.quantity,
+--         boba_amount = boba_amount - NEW.quantity
+--     WHERE menuItem.menu_item_id = NEW.menu_item_id;
+-- END;
+
 
 
 

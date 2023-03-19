@@ -9,11 +9,10 @@ addCustomerForm.addEventListener("submit", function (e) {
     let inputOrderID = document.getElementById("input-order-id");
     let inputName = document.getElementById("input-name");
 
-    let orderIDValue = inputOrderID.value;
     let nameValue = inputName.value;
 
     let data = {
-        orderID: orderIDValue,
+
         name: nameValue
     }
 
@@ -28,7 +27,6 @@ addCustomerForm.addEventListener("submit", function (e) {
 
             addRowToTable(xhttp.response);
 
-            inputOrderID.value = '';
             inputName.value = '';
         }
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
