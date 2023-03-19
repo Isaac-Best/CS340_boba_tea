@@ -100,9 +100,9 @@ VALUES
 
 INSERT INTO `order` (customer_id, order_date, order_time, total_amount, menu_item_id)
 VALUES 
-  (1, '2022-01-01', '10:00:00', 15.99, 1001),
-  (2, '2022-01-02', '11:00:00', 12.99, 1002),
-  (3, '2022-01-03', '12:00:00', 19.99, 1003);
+  (1, '2022-01-01', '10:00:00', 15.99, 1),
+  (2, '2022-01-02', '11:00:00', 12.99, 2),
+  (3, '2022-01-03', '12:00:00', 19.99, 3);
 
 INSERT INTO menuItem (item_name, inventory_id, item_cost)
 VALUES 

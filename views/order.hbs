@@ -99,3 +99,41 @@
 <script src="./add_order_2.js"></script> 
 
 
+{{!-- Form to update an order with payment and customer information using AJAX --}}
+<h2>Update an order:</h2>
+<p>Leave customer name blank to NULL the relationship, or set customer to a customer who is not already connected to an order from the drop down</p>
+<form id="update-order-form">
+
+    <label for="input-order-id-3">Order ID: </label>
+    <select name="input-order-id-3" id="input-order-id-3">
+        <option value="input-order-id-3">Select an order to modify</option>
+        {{#each data}}
+        <option value="{{this.order_id}}">{{this.order_id}}</option>
+        {{/each}}
+    </select>
+
+   <label for="input-customer-name-3">Customer Name: </label>
+    <input type="text" name="input-customer-name-3" id="input-customer-name-3">
+
+    <label for="input-order-date-3">Order Date: </label>
+    <input type="date" name="input-order-date-3" id="input-order-date-3">
+
+    <label for="input-order-time-3">Order Time: </label>
+    <input type="time" name="input-order-time-3" id="input-order-time-3">
+
+    <label for="input-total-amount-3">Total Amount: </label>
+    <input type="number" name="input-total-amount-3" id="input-total-amount-3" step="1" min="0">
+
+    <label for="input-menuItem-id-3">Menu Item ID: </label>
+    <select name="input-menuItem-id-3" id="input-menuItem-id-3">
+        <option value="input-menuItem-id-3">Select a menu item</option>
+        {{#each menuItems}}
+        <option value="{{this.menu_item_id}}">{{this.item_name}}</option>
+        {{/each}}
+    </select>
+
+    <input type="submit" value="Update Order">
+</form>
+
+
+<script src="./update_order.js"></script>

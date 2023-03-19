@@ -451,20 +451,22 @@ app.delete('/delete-customer', function(req, res, next) {
 
 
 ///////////////////////////////////
+///////////////////////////////////
 app.get('/order', function(req, res) {
-    let query = 'SELECT * FROM `order`';
-    let query2 = 'SELECT menu_item_id, item_name FROM menuItem';
+  let query = 'SELECT * FROM `order`';
+  let query2 = 'SELECT menu_item_id, item_name FROM menuItem';
 
-    db.pool.query(query, function(error, rows, fields) {
-        if (error) throw error;
+  db.pool.query(query, function(error, rows, fields) {
+      if (error) throw error;
 
-        db.pool.query(query2, function(error, rows2, fields2) {
-            if (error) throw error;
+      db.pool.query(query2, function(error, rows2, fields2) {
+          if (error) throw error;
 
-            res.render('order', {data: rows, menuItems: rows2});
-        });
-    });
+          res.render('order', {data: rows, menuItems: rows2});
+      });
+  });
 });
+
 
 
 // add order to table this one is different because we have the 2 circumstances pay with card or cash so 2 different forms
@@ -549,6 +551,50 @@ app.delete('/delete-order', function(req, res, next) {
       res.sendStatus(204);
     }
   });
+});
+
+app.put('/update-order-form', function(req, res) {
+  let data = req.body;
+  let customerId = null;
+
+  // Check if customerName is not null or undefined
+  if (data['customer_name'] && data['customer_name'].trim() !== '') {
+    // Add the customer to the database
+    let query1 = `INSERT INTO customer (name) VALUES ('${data['customer_name']}')`;
+    db.pool.query(query1, function(error, rows, fields) {
+      if (error) {
+        console.log(error);
+        res.sendStatus(400);
+      } else {
+        // Get the customer ID that was just generated
+        customerId = rows.insertId;
+        updateOrder(customerId);
+      }
+    });
+  } else {
+    updateOrder(customerId);
+  }
+
+  // Function to update the order with the given customer ID
+  function updateOrder(customerId) {
+    let query2 = `UPDATE \`order\` SET customer_id=${customerId}, order_date='${data['order_date']}', order_time='${data['order_time']}', total_amount='${data['total_amount']}', menu_item_id='${data['menu_item_id']}' WHERE order_id=${data['order_id']}`;
+    db.pool.query(query2, function(error, rows, fields) {
+      if (error) {
+        console.log(error);
+        res.sendStatus(400);
+      } else {
+        query3 = `SELECT * FROM \`order\``;
+        db.pool.query(query3, function(error, rows, fields) {
+          if (error) {
+            console.log(error);
+            res.sendStatus(400);
+          } else {
+            res.send(rows);
+          }
+        });
+      }
+    });
+  }
 });
 
 
