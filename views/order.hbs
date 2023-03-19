@@ -1,0 +1,101 @@
+<link rel="stylesheet" href="/styles.css">
+
+<h1>Orders</h1>
+<p>Nav Bar below</p>
+[ <a href="/">Index</a> | <a href="/employee"> Employees</a> | <a href="/store">Stores</a> | <a href="/inventory">Inventory</a> | <a href="/order_menu_item">Order_Menu_Item</a> | <a href="/menuItem">Menu_Item</a> | <a href="/customer">Customer</a> ]
+{{!-- Create a table --}}
+<table id="orders">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we know what each column means when the page renders --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}<th> </th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the order_id, customer_id, order_date, order_time, total_amount, and menu_item_id --}}
+        {{#each data}}
+        <tr data-value={{this.order_id}}>
+            <td>{{this.order_id}}</td>
+            <td>{{this.customer_id}}</td>
+            <td>{{this.order_date}}</td>
+            <td>{{this.order_time}}</td>
+            <td>{{this.total_amount}}</td>
+            <td>{{this.menu_item_id}}</td>
+            <td><button onclick="deleteOrder({{this.order_id}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./delete_order.js"></script>    
+
+{{!-- Form to add a record to the table using AJAX --}}
+<h2>Add an order: pay with cash (no customer info) </h2>
+<p>To add a new order, please enter the information below and click 'Submit'!</p>
+<form id="add-order-form">
+
+    <label for="input-order-date">Order Date: </label>
+    <input type="date" name="input-order-date" id="input-order-date">
+
+    <label for="input-order-time">Order Time: </label>
+    <input type="time" name="input-order-time" id="input-order-time">
+
+    <label for="input-total-amount">Total Amount: </label>
+    <input type="number" name="input-total-amount" id="input-total-amount" step="0.01" min="0">
+
+    <label for="input-menuItem-id">Menu Item ID: </label>
+    <select name="input-menuItem-id" id="input-menuItem-id">
+        <option value="">Select a menu item </option>
+        {{#each menuItems}}
+        <option value="{{this.menu_item_id}}">{{this.item_name}}</option>
+        {{/each}}
+    </select>
+
+    <input type="submit">
+</form>
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./add_order.js"></script> 
+
+
+{{!-- Form to add a record to the table using AJAX --}}
+<h2>Add an order: pay with card include customer info </h2>
+<p>To add a new order, please enter the information below and click 'Submit'!</p>
+<form id="add-order-form-2">
+
+    <label for="input-customer-name-2">Customer Name </label>
+    <input type="text" name="input-customer-name-2" id="input-customer-name-2">
+
+    <label for="input-order-date-2">Order Date: </label>
+    <input type="date" name="input-order-date-2" id="input-order-date-2">
+
+    <label for="input-order-time-2">Order Time: </label>
+    <input type="time" name="input-order-time-2" id="input-order-time-2">
+
+    <label for="input-total-amount-2">Total Amount: </label>
+    <input type="number" name="input-total-amount-2" id="input-total-amount-2" step="0.01" min="0">
+
+    <label for="input-menuItem-id-2">Menu Item ID: </label>
+    <select name="input-menuItem-id-2" id="input-menuItem-id-2">
+        <option value="input-menuItem-id-2">Select a menu item</option>
+        {{#each menuItems}}
+        <option value="{{this.menu_item_id}}">{{this.item_name}}</option>
+        {{/each}}
+    </select>
+
+    <input type="submit">
+</form>
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./add_order_2.js"></script> 
+
+

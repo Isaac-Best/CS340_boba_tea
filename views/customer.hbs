@@ -1,0 +1,64 @@
+
+
+<link rel="stylesheet" href="/styles.css">
+
+
+<h1>Customers</h1>
+<p>Nav Bar below</p>
+[ <a href="/">Index</a> | <a href="/employee"> Employees</a> | <a href="/store">Stores</a> | <a href="/inventory">Inventory</a> | <a href="/order_menu_item">Order_Menu_Item</a> | <a href="/menuItem">Menu_Item</a> | <a href="/order">Order</a>]
+{{!-- Create a table --}}
+<table id="customers">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we know what each column means when the page renders --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}<th> </th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the customer_id, order_id, and name --}}
+        {{#each data}}
+        <tr data-value={{this.customer_id}}>
+            <td>{{this.customer_id}}</td>
+            <td>{{this.order_id}}</td>
+            <td>{{this.name}}</td>
+            <td><button onclick="deleteCustomer({{this.customer_id}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./delete_customer.js"></script>    
+
+{{!-- Form to add a record to the table using AJAX --}}
+<h2>Adding Data with AJAX two options</h2>
+    <p>
+    The drop down shows orders without a customer FK attached, you can either leave it blank to add cusstomer or select to add a customer and connect them to a current order  
+    </p>
+    
+<form id="add-customer-form">
+
+    <label for="input-order-id">Order ID: </label>
+    <select name="input-order-id" id="input-order-id">
+        <option value="">Select an order ID</option>
+        {{#each orderIds}}
+        <option value="{{this}}">{{this}}</option>
+        {{/each}}
+    </select>
+
+    <label for="input-name">Name: </label>
+    <input type="text" name="input-name" id="input-name">
+
+    <input type="submit">
+</form>
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./add_customer.js"></script> 

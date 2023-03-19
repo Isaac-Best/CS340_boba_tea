@@ -79,7 +79,7 @@ app.post('/add-employee-form', function(req, res){
             res.sendStatus(400);
         }
 
-        // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM bsg_people and
+        // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM employees and
         // presents it on the screen
         else
         {
@@ -349,7 +349,7 @@ app.get('/menuItem', function(req, res) {
       });
     });
   });
-  
+
 
 app.post('/add-menuItem-form', function(req, res) {
 
@@ -392,6 +392,177 @@ app.delete('/delete-menuItem', function(req, res) {
     });
 });
   
+
+//////////////////////////////////
+app.get('/customer', function(req, res) {
+    let query = `SELECT * FROM customer;`;
+    let query2 = `SELECT \`order\`.order_id         
+              FROM \`order\`
+              LEFT JOIN customer ON \`order\`.order_id = customer.order_id
+              WHERE customer.customer_id IS NULL;`;
+   
+    db.pool.query(query, function(error, rows, fields) {
+      if (error) throw error;
+  
+      db.pool.query(query2, function(error, rows2, fields2) {       // for the select drop down shows orders w/o a customer 
+        if (error) throw error;
+        let orderIds = rows2.map(row => row.order_id);
+  
+        res.render('customer', { data: rows, orderIds: orderIds });
+      });
+    });
+  });
+  
+app.post('/add-customer', function(req, res) {
+  let data = req.body;
+  let orderId = data['orderID'] ? data['orderID'] : null;  // check if order_id is present
+
+  let query = `INSERT INTO customer (name, order_id) VALUES ('${data['name']}', ${orderId})`;
+
+  db.pool.query(query, function(error, rows, fields) {
+    if (error) {
+        console.log(error);
+        res.sendStatus(400);
+    } else {
+        let selectQuery = `SELECT * FROM customer`;
+
+        db.pool.query(selectQuery, function(error, rows, fields) {
+          if (error) {
+            console.log(error);
+            res.sendStatus(400);
+          } else {
+            res.send(rows);
+          }
+        });
+    }
+  });
+});
+
+app.delete('/delete-customer', function(req, res, next) {
+  let data = req.body;
+  let customerId = parseInt(data.customer_id);
+  let deleteCustomerQuery = "DELETE FROM customer WHERE customer_id = ?;";
+
+  db.pool.query(deleteCustomerQuery, [customerId], function(error, rows, fields) {
+    if (error) {
+      console.log(error);
+      res.sendStatus(400);
+    } else {
+      res.sendStatus(204);
+    }
+  });
+});
+
+  
+  
+
+
+
+
+///////////////////////////////////
+app.get('/order', function(req, res) {
+    let query = 'SELECT * FROM `order`';
+    let query2 = 'SELECT menu_item_id, item_name FROM menuItem';
+
+    db.pool.query(query, function(error, rows, fields) {
+        if (error) throw error;
+
+        db.pool.query(query2, function(error, rows2, fields2) {
+            if (error) throw error;
+
+            res.render('order', {data: rows, menuItems: rows2});
+        });
+    });
+});
+
+
+// add order to table this one is different because we have the 2 circumstances pay with card or cash so 2 different forms
+
+app.post('/add-order-form', function(req, res){
+    let data = req.body;
+    query = `INSERT INTO \`order\` (customer_id, order_date, order_time, total_amount, menu_item_id) 
+             VALUES (${data.customerID || 'NULL'}, '${data.orderDate}', '${data.orderTime}', ${data.totalAmount}, ${data.menuItemID})`;
+
+    db.pool.query(query, function(error, rows, fields){
+        if (error) {
+            console.log(error)
+            res.sendStatus(400);
+        }
+        else{
+            query = `SELECT * FROM \`order\``;
+            db.pool.query(query, function(error, rows, fields) {
+                if (error) {
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+                else {
+                    res.send(rows)  
+                }
+            })
+        }
+    })
+});
+
+app.post('/add-order-form-2', function(req, res) {
+    let data = req.body;
+  
+    // Add the customer to the database
+    let query1 = `INSERT INTO customer (name) VALUES ('${data['customerName']}')`;
+    db.pool.query(query1, function(error, rows, fields) {
+      if (error) {
+        console.log(error);
+        res.sendStatus(400);
+      } else {
+        // Get the customer ID that was just generated
+        const customerId = rows.insertId;
+  
+        // Add the order to the database with the new customer ID
+        let query2 = `INSERT INTO \`order\` (customer_id, order_date, order_time, total_amount, menu_item_id) VALUES (${customerId}, '${data['orderDate']}', '${data['orderTime']}', '${data['totalAmount']}', '${data['menuItemID']}')`;
+        db.pool.query(query2, function(error, rows, fields) {
+          if (error) {
+            console.log(error);
+            res.sendStatus(400);
+          } else {
+            query3 = `SELECT * FROM \`order\``;
+            db.pool.query(query3, function(error, rows, fields) {
+                if (error) {
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+                else {
+                    res.send(rows)  
+                }
+            })
+            
+          }
+        });
+      }
+    });
+  });
+  
+
+// DELETE request to delete an order
+app.delete('/delete-order', function(req, res, next) {
+  let data = req.body;
+  let orderID = parseInt(data.order_id);
+  let delete_order = "DELETE FROM `order` WHERE order_id = ?;";
+
+  // Run the DELETE query
+  db.pool.query(delete_order, [orderID], function(error, rows, fields) {
+    if (error) {
+      // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+      console.log(error);
+      res.sendStatus(400);
+    } else {
+      // Send a success status code
+      res.sendStatus(204);
+    }
+  });
+});
+
+
+
+
 
 
 

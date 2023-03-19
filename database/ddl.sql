@@ -32,10 +32,10 @@ CREATE OR REPLACE TABLE employees (
 
  -- tracks customer information used for returns and processing card charges | optinal relationship woth order
 CREATE OR REPLACE TABLE customer (
-  customer_id INT NOT NULL PRIMARY KEY,
+  customer_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   order_id INT,
   name VARCHAR(255),
-  FOREIGN KEY (order_id) REFERENCES `order`(order_id)
+  FOREIGN KEY (order_id) REFERENCES `order`(order_id) ON DELETE CASCADE
 );
 
 -- Tracks menu items:
@@ -55,7 +55,7 @@ CREATE OR REPLACE TABLE `order` (
   order_time TIME NOT NULL,
   total_amount DECIMAL(10,2) NOT NULL,
   menu_item_id INT NOT NULL,
-  FOREIGN KEY (customer_id) REFERENCES customer(customer_id),
+  FOREIGN KEY (customer_id) REFERENCES customer(customer_id) ON DELETE SET NULL ,
   FOREIGN KEY (menu_item_id) REFERENCES menuItem(menu_item_id) ON DELETE CASCADE      -- when the item stopped being sold all records of the orders of it also deleted 
 );
 
@@ -93,11 +93,11 @@ VALUES
   (1, 'Tom', '1988-04-12', '456 Elm St', '000-000-0002'),
   (1, 'Sara', '1991-12-05', '789 Oak St', '000-000-0003');
 
-INSERT INTO customer (customer_id, order_id, name)
+INSERT INTO customer ( order_id, name)
 VALUES 
-  (1, 1, 'Chris'),
-  (2, 2, 'Ava'),
-  (3, 3, 'Olivia');
+  ( 1, 'Chris'),
+  ( 2, 'Ava'),
+  ( 3, 'Olivia');
 
 INSERT INTO `order` (customer_id, order_date, order_time, total_amount, menu_item_id)
 VALUES 
